@@ -11,7 +11,7 @@ package:
 
 source:
   url:
-    - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
+    # - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
   sha256: {{ checksum }}
 
