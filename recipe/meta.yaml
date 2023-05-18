@@ -20,13 +20,11 @@ build:
   # If this is a new build for the same version, increment the build number.
   number: {{ build_number }}
   # no skip
-
   # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
-# Suggests: parallel, tinytest, ncdf4, sf (>= 0.9-8), deldir, XML, igraph
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
@@ -43,34 +41,25 @@ requirements:
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
-    - libgdal
-
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-rcpp
-    - libgdal
-    - proj
-    - geos
-
+    - libgdal  # [not win]
+    - proj  # [not win]
+    - geos  # [not win]
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
     - r-rcpp
-    - libgdal
-    - proj
-    - geos
+    - libgdal  # [not win]
+    - proj  # [not win]
+    - geos  # [not win]
 
 test:
   commands:
-    # You can put additional test commands to be run here.
     - $R -e "library('terra')"           # [not win]
     - "\"%R%\" -e \"library('terra')\""  # [win]
-
-  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
-  # in the recipe that will be run at test time.
-
-  # requires:
-    # Put any additional test requirements here.
 
 about:
   home: https://rspatial.org/terra/
