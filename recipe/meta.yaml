@@ -49,12 +49,16 @@ requirements:
     - r-base
     - r-rcpp
     - libgdal
+    - proj
+    - geos
 
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
     - r-rcpp
     - libgdal
+    - proj
+    - geos
 
 test:
   commands:
